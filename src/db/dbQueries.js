@@ -16,6 +16,84 @@ const connection = new pg.Client({
 
 
 connection.connect();
+const dropCartTableQuery = `
+    DROP TABLE IF EXISTS cart_tb CASCADE;
+`;
+
+const dropCustomerLoginTableQuery = `
+    DROP TABLE IF EXISTS customerlogin_tb CASCADE;
+`;
+
+const dropDishesTableQuery = `
+    DROP TABLE IF EXISTS dishes_tb CASCADE;
+`;
+
+const dropOrderTableQuery = `
+    DROP TABLE IF EXISTS order_tb CASCADE;
+`;
+
+const dropRatingTableQuery = `
+    DROP TABLE IF EXISTS rating_tb CASCADE;
+`;
+
+const dropRestaurantLoginTableQuery = `
+    DROP TABLE IF EXISTS restaurantlogin_tb CASCADE;
+`;
+
+connection.query(dropCartTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping cart_tb:", err);
+    } else {
+        console.log("cart_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropCustomerLoginTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping customerlogin_tb:", err);
+    } else {
+        console.log("customerlogin_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropDishesTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping dishes_tb:", err);
+    } else {
+        console.log("dishes_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropOrderTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping order_tb:", err);
+    } else {
+        console.log("order_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropRatingTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping rating_tb:", err);
+    } else {
+        console.log("rating_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropRestaurantLoginTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping restaurantlogin_tb:", err);
+    } else {
+        console.log("restaurantlogin_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
 
 const createCartTableQuery = `
     CREATE TABLE IF NOT EXISTS cart_tb (
@@ -108,9 +186,6 @@ const createRestaurantLoginTableQuery = `
     )
 `;
 
-
-
-
 const queries = [
     createCartTableQuery,
     createCustomerLoginTableQuery,
@@ -125,7 +200,7 @@ queries.forEach(query => {
         if (err) {
             console.error("Error executing query:", err);
         } else {
-            console.log("Query executed successfully");
+            console.log("Table created successfully");
         }
     });
 });
