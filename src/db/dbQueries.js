@@ -64,7 +64,7 @@ const createEnumTypeQuery = `
 
 // Table creation query using the custom enumeration type
 const createOrderTableQuery = `
-    
+    ${createEnumTypeQuery}
     CREATE TABLE IF NOT EXISTS order_tb (
         od_id SERIAL PRIMARY KEY,
         o_id VARCHAR(100) NOT NULL,
@@ -73,11 +73,11 @@ const createOrderTableQuery = `
         d_quantity INT NOT NULL,
         r_id INT NOT NULL,
         o_status order_status DEFAULT 'Order Confirmation',
-        o_payment INT NOT NULL,
+        o_payment NUMERIC(10, 2)  NOT NULL,
         c_email VARCHAR(50) NOT NULL,
         c_address VARCHAR(500) NOT NULL,
-        c_latitude VARCHAR(30) NOT NULL,
-        c_longitude VARCHAR(30) NOT NULL,
+        c_latitude VARCHAR(30),
+        c_longitude VARCHAR(30),
         o_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
 `;
@@ -100,10 +100,11 @@ const createRestaurantLoginTableQuery = `
         rest_id SERIAL PRIMARY KEY,
         r_name VARCHAR(50) NOT NULL,
         r_address VARCHAR(500) NOT NULL,
-        r_phone BIGINT NOT NULL,
+        
         r_email VARCHAR(50) NOT NULL UNIQUE,
         r_password VARCHAR(100) NOT NULL,
-        r_image VARCHAR(100) NOT NULL
+        r_image VARCHAR(100) NOT NULL,
+        r_city VARCHAR(100) NOT NULL,
     )
 `;
 
@@ -142,17 +143,6 @@ const queries = [
     createRatingTableQuery,
     createRestaurantLoginTableQuery
 ];
-
-const addColumnQuery = "ALTER TABLE restaurantlogin_tb ADD COLUMN r_city VARCHAR(100);";
-
-connection.query(addColumnQuery, (err, result) => {
-    if (err) {
-        console.error("Error adding column:", err);
-    } else {
-        console.log("Column added successfully");
-        // Additional code if needed
-    }
-});
 
 queries.forEach(query => {
     connection.query(query, (err, res) => {
@@ -252,6 +242,7 @@ const addRestaurant = (data, callback) => {
                 console.log(error);
                 callback(error);
             } else {
+                console.log(results.rows);
                 callback(null, results);
             }
         });
@@ -285,7 +276,7 @@ const getUserDetails = (username, flag, callback) => {
                 return callback(null);
             }
             const user = results.rows[0];
-            console.log(user);
+            // console.log(user);
             if (flag === "customer") {
                 callback({
                     id: user.c_id,
