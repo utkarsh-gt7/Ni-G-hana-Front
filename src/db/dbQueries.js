@@ -113,7 +113,7 @@ const dropOrderTableQuery = `
 `;
 
 const dropRestaurantLoginTableQuery = `
-    DROP TABLE IF EXISTS restaurantlogin_tb;
+    DROP TABLE IF EXISTS restaurantlogin_tb CASCADE;
 `;
 
 connection.query(dropOrderTableQuery, (err, result) => {
