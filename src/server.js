@@ -221,7 +221,7 @@ app.post('/updatedish', uploadRestaurant.single('dimage'), (req, res) => {
         d_name: (req.body.dname).toLowerCase(),
         d_cost: req.body.dcost,
         d_type: req.body.dpreference,
-        d_image: (req.file !== undefined) ? ((req.file.path.replace('views\\','')).replace('\\', '/')).replace('\\','/') : '',
+        d_image: req.body.img_url,
     }
     updateDish(data, (message) => {
         return res.redirect('/updatedish?dish=' + req.query.dish);
