@@ -17,113 +17,83 @@ const connection = new pg.Client({
 
 connection.connect();
 
-const createCartTableQuery = `
-    CREATE TABLE IF NOT EXISTS cart_tb (
-        r_id BIGINT NOT NULL,
-        d_id BIGINT NOT NULL,
-        c_email VARCHAR(50) NOT NULL,
-        d_cost INT NOT NULL,
-        cart_quantity INT DEFAULT 1,
-        d_name VARCHAR(50) NOT NULL,
-        cart_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (r_id, d_id, c_email)
-    )
+
+const dropCartTableQuery = `
+    DROP TABLE IF EXISTS cart_tb CASCADE;
 `;
 
-const createCustomerLoginTableQuery = `
-    CREATE TABLE IF NOT EXISTS customerlogin_tb (
-        c_id SERIAL PRIMARY KEY,
-        c_name VARCHAR(60) NOT NULL,
-        c_phone BIGINT NOT NULL,
-        c_preference VARCHAR(10) NOT NULL,
-        c_address VARCHAR(100) NOT NULL,
-        c_email VARCHAR(50) NOT NULL UNIQUE,
-        c_password VARCHAR(100) NOT NULL,
-        c_image VARCHAR(100) NOT NULL
-    )
+const dropCustomerLoginTableQuery = `
+    DROP TABLE IF EXISTS customerlogin_tb CASCADE;
 `;
 
-const createDishesTableQuery = `
-    CREATE TABLE IF NOT EXISTS dishes_tb (
-        d_id SERIAL PRIMARY KEY,
-        rest_id INT NOT NULL,
-        d_name VARCHAR(100) NOT NULL,
-        d_cost BIGINT NOT NULL,
-        d_type TEXT NOT NULL,
-        d_image VARCHAR(200) NOT NULL,
-        d_totalRatings INT DEFAULT 0,
-        d_totalCustomers INT DEFAULT 0,
-        FOREIGN KEY (rest_id) REFERENCES restaurantlogin_tb (rest_id)
-    )
+const dropDishesTableQuery = `
+    DROP TABLE IF EXISTS dishes_tb CASCADE;
 `;
 
-// Define the custom enumeration type
-const createEnumTypeQuery = `
-    CREATE TYPE order_status AS ENUM ('Order Confirmation', 'Preparing food', 'On its way', 'Delivered', 'Canceled');
+const dropOrderTableQuery = `
+    DROP TABLE IF EXISTS order_tb CASCADE;
 `;
 
-// Table creation query using the custom enumeration type
-const createOrderTableQuery = `
-    ${createEnumTypeQuery}
-    CREATE TABLE IF NOT EXISTS order_tb (
-        od_id SERIAL PRIMARY KEY,
-        o_id VARCHAR(100) NOT NULL,
-        d_id INT NOT NULL,
-        d_name VARCHAR(100) NOT NULL,
-        d_quantity INT NOT NULL,
-        r_id INT NOT NULL,
-        o_status order_status DEFAULT 'Order Confirmation',
-        o_payment INT NOT NULL,
-        c_email VARCHAR(50) NOT NULL,
-        c_address VARCHAR(500) NOT NULL,
-        c_latitude VARCHAR(30) NOT NULL,
-        c_longitude VARCHAR(30) NOT NULL,
-        o_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
+const dropRatingTableQuery = `
+    DROP TABLE IF EXISTS rating_tb CASCADE;
 `;
 
-
-const createRatingTableQuery = `
-    CREATE TABLE IF NOT EXISTS rating_tb (
-        c_email VARCHAR(50) NOT NULL,
-        rest_id INT NOT NULL,
-        d_id INT NOT NULL,
-        rating INT NOT NULL,
-        review TEXT NOT NULL,
-        rating_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (c_email, d_id)
-    )
+const dropRestaurantLoginTableQuery = `
+    DROP TABLE IF EXISTS restaurantlogin_tb CASCADE;
 `;
 
-const createRestaurantLoginTableQuery = `
-    CREATE TABLE IF NOT EXISTS restaurantlogin_tb (
-        rest_id SERIAL PRIMARY KEY,
-        r_name VARCHAR(50) NOT NULL,
-        r_address VARCHAR(500) NOT NULL,
-        r_phone BIGINT NOT NULL,
-        r_email VARCHAR(50) NOT NULL UNIQUE,
-        r_password VARCHAR(100) NOT NULL,
-        r_image VARCHAR(100) NOT NULL
-    )
-`;
+connection.query(dropCartTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping cart_tb:", err);
+    } else {
+        console.log("cart_tb dropped successfully");
+        // Additional code if needed
+    }
+});
 
-const queries = [
-    createCartTableQuery,
-    createCustomerLoginTableQuery,
-    createDishesTableQuery,
-    createOrderTableQuery,
-    createRatingTableQuery,
-    createRestaurantLoginTableQuery
-];
+connection.query(dropCustomerLoginTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping customerlogin_tb:", err);
+    } else {
+        console.log("customerlogin_tb dropped successfully");
+        // Additional code if needed
+    }
+});
 
-queries.forEach(query => {
-    connection.query(query, (err, res) => {
-        if (err) {
-            console.error("Error executing query:", err);
-        } else {
-            console.log("Query executed successfully");
-        }
-    });
+connection.query(dropDishesTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping dishes_tb:", err);
+    } else {
+        console.log("dishes_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropOrderTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping order_tb:", err);
+    } else {
+        console.log("order_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropRatingTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping rating_tb:", err);
+    } else {
+        console.log("rating_tb dropped successfully");
+        // Additional code if needed
+    }
+});
+
+connection.query(dropRestaurantLoginTableQuery, (err, result) => {
+    if (err) {
+        console.error("Error dropping restaurantlogin_tb:", err);
+    } else {
+        console.log("restaurantlogin_tb dropped successfully");
+        // Additional code if needed
+    }
 });
 
 
