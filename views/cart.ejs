@@ -69,7 +69,7 @@
           <% cart.forEach(item => { %>
     			<div class="col-md-3 text-center ftco-animate">
       			<div class="menu-wrap">
-      				<a href="#" class="menu-img img mb-4" style="background-image: url(<%= item.d_image %>);"></a>
+      				<a href="#" class="menu-img img mb-4" style="background-image: url(./<%= item.d_image %>);"></a>
       				<div class="text">
       					<h3><a href="#"><%= item.d_name %></a></h3>
       					<p class="price"><span>$<%= item.d_cost %> x <%= item.quantity %></span></p>
