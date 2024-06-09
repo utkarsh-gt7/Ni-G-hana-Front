@@ -246,7 +246,7 @@ const getUserDetails = (username, flag, callback) => {
                 return callback(null);
             }
             const user = results.rows[0];
-            // console.log(user);
+            console.log(user);
             if (flag === "customer") {
                 callback({
                     id: user.c_id,
