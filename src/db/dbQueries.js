@@ -17,7 +17,7 @@ const connection = new pg.Client({
 
 connection.connect();
 
-const addColumnQuery = "ALTER TABLE restaurantlogin_tb ADD COLUMN r_city VARCHAR(255);";
+
 
 connection.query(addColumnQuery, (err, result) => {
     if (err) {
