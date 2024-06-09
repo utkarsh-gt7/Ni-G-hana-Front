@@ -19,14 +19,7 @@ connection.connect();
 
 
 
-connection.query(addColumnQuery, (err, result) => {
-    if (err) {
-        console.error("Error adding column:", err);
-    } else {
-        console.log("Column added successfully");
-        // Additional code if needed
-    }
-});
+
 
 
 const createCartTableQuery = `
