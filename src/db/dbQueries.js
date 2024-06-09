@@ -211,6 +211,7 @@ const addRestaurant = (data, callback) => {
         connection.query(sql, values, (error, results) => {
             if (error) {
                 console.log("InsideE");
+                console.log(error);
                 callback(error);
             } else {
                 callback(null, results);
