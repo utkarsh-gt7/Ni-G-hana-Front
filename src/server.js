@@ -377,7 +377,7 @@ app.get('/', checkNotAuthenticated, (req, res) => {
 
 app.post('/restaurantlogin', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/profile',
-    failureRedirect: '/restaurantlogin',
+    failureRedirect: '/',
     failureFlash: true,
 }))
 
