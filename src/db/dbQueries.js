@@ -116,6 +116,17 @@ const queries = [
     createRestaurantLoginTableQuery
 ];
 
+const addColumnQuery = "ALTER TABLE restaurantlogin_tb ADD COLUMN r_city VARCHAR(100);";
+
+connection.query(addColumnQuery, (err, result) => {
+    if (err) {
+        console.error("Error adding column:", err);
+    } else {
+        console.log("Column added successfully");
+        // Additional code if needed
+    }
+});
+
 queries.forEach(query => {
     connection.query(query, (err, res) => {
         if (err) {
