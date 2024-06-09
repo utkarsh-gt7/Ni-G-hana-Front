@@ -108,31 +108,7 @@ const createRestaurantLoginTableQuery = `
     )
 `;
 
-const dropOrderTableQuery = `
-    DROP TABLE IF EXISTS order_tb;
-`;
 
-const dropRestaurantLoginTableQuery = `
-    DROP TABLE IF EXISTS restaurantlogin_tb CASCADE;
-`;
-
-connection.query(dropOrderTableQuery, (err, result) => {
-    if (err) {
-        console.error("Error dropping order_tb:", err);
-    } else {
-        console.log("order_tb dropped successfully");
-        // Additional code if needed
-    }
-});
-
-connection.query(dropRestaurantLoginTableQuery, (err, result) => {
-    if (err) {
-        console.error("Error dropping restaurantlogin_tb:", err);
-    } else {
-        console.log("restaurantlogin_tb dropped successfully");
-        // Additional code if needed
-    }
-});
 
 
 const queries = [
