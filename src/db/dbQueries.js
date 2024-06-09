@@ -17,6 +17,18 @@ const connection = new pg.Client({
 
 connection.connect();
 
+const addColumnQuery = "ALTER TABLE restaurantlogin_tb ADD COLUMN r_city VARCHAR(255);";
+
+connection.query(addColumnQuery, (err, result) => {
+    if (err) {
+        console.error("Error adding column:", err);
+    } else {
+        console.log("Column added successfully");
+        // Additional code if needed
+    }
+});
+
+
 const createCartTableQuery = `
     CREATE TABLE IF NOT EXISTS cart_tb (
         r_id BIGINT NOT NULL,
