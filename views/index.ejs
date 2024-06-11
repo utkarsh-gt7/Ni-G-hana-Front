@@ -383,7 +383,29 @@
 		              	</div>
 		              </div>
 
-		              <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+			    <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+		                <div class="row">
+							<% adds.forEach(dish => { %>
+								<div class="col-md-4 text-center">
+									<div class="menu-wrap">
+										<a  class="menu-img img mb-4" style="background-image: url(<%= dish.d_image %>);"></a>
+										<div class="text">
+											<h3><a ><%= dish.d_name %></a></h3>
+											
+											<p class="price"><span>$<%= dish.d_cost %></span></p>
+											<p>
+											  <form action="/order/<%= dish.d_id %>" method="POST">
+												  <button type="submit" class="ml-2 btn btn-white btn-outline-white">Add to Cart</button>
+												</form>
+										  </p>
+										</div>
+									</div>
+								</div>
+								<% }) %>  
+		              	</div>
+		              </div>
+
+		              <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
 		                <div class="row">
 							<% sides.forEach(dish => { %>
 								<div class="col-md-4 text-center">
@@ -405,27 +427,7 @@
 		              	</div>
 		              </div>
 
-					  <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
-		                <div class="row">
-							<% adds.forEach(dish => { %>
-								<div class="col-md-4 text-center">
-									<div class="menu-wrap">
-										<a  class="menu-img img mb-4" style="background-image: url(<%= dish.d_image %>);"></a>
-										<div class="text">
-											<h3><a ><%= dish.d_name %></a></h3>
-											
-											<p class="price"><span>$<%= dish.d_cost %></span></p>
-											<p>
-											  <form action="/order/<%= dish.d_id %>" method="POST">
-												  <button type="submit" class="ml-2 btn btn-white btn-outline-white">Add to Cart</button>
-												</form>
-										  </p>
-										</div>
-									</div>
-								</div>
-								<% }) %>  
-		              	</div>
-		              </div>
+					  
 
 					  <div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
 		                <div class="row">
