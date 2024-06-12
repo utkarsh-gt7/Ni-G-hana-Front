@@ -28,6 +28,35 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="/css/custom.css">
+    <style>
+
+    @media (min-width: 768px) {
+    #v-pills-1 .menu-wrap {
+      margin-left: 50px;
+	margin-right: 175px;
+    }
+  }
+
+  #v-pills-1 .col-md-4 .text{
+    text-align: center;
+    width: 200px;
+    margin-left: 2px;
+  }
+
+  @media (min-width: 768px) {
+    #v-pills-5 .menu-wrap {
+      margin-left: 50px;
+	margin-right: 175px;
+    }
+  }
+
+  #v-pills-5 .col-md-4 .text{
+    text-align: center;
+    width: 200px;
+    margin-left: 2px;
+  }
+
+    </style>
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -160,7 +189,29 @@
 		              	</div>
 		              </div>
 
-		              <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+		 			    <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="v-pills-4-tab">
+		                <div class="row">
+							<% adds.forEach(dish => { %>
+								<div class="col-md-4 text-center">
+									<div class="menu-wrap">
+										<a  class="menu-img img mb-4" style="background-image: url(<%= dish.d_image %>);"></a>
+										<div class="text">
+											<h3><a ><%= dish.d_name %></a></h3>
+											
+											<p class="price"><span>$<%= dish.d_cost %></span></p>
+											<p>
+											  <form action="/order/<%= dish.d_id %>" method="POST">
+												  <button type="submit" class="ml-2 btn btn-white btn-outline-white">Add to Cart</button>
+												</form>
+										  </p>
+										</div>
+									</div>
+								</div>
+								<% }) %>  
+		              	</div>
+		              </div>
+
+		              <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
 		                <div class="row">
 							<% sides.forEach(dish => { %>
 								<div class="col-md-4 text-center">
@@ -182,27 +233,6 @@
 		              	</div>
 		              </div>
 
-					  <div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="v-pills-5-tab">
-		                <div class="row">
-							<% adds.forEach(dish => { %>
-								<div class="col-md-4 text-center">
-									<div class="menu-wrap">
-										<a  class="menu-img img mb-4" style="background-image: url(<%= dish.d_image %>);"></a>
-										<div class="text">
-											<h3><a ><%= dish.d_name %></a></h3>
-											
-											<p class="price"><span>$<%= dish.d_cost %></span></p>
-											<p>
-											  <form action="/order/<%= dish.d_id %>" method="POST">
-												  <button type="submit" class="ml-2 btn btn-white btn-outline-white">Add to Cart</button>
-												</form>
-										  </p>
-										</div>
-									</div>
-								</div>
-								<% }) %>  
-		              	</div>
-		              </div>
 
 					  <div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="v-pills-6-tab">
 		                <div class="row">
