@@ -39,8 +39,31 @@
 
      @media (min-width: 768px) {
     #v-pills-1 .menu-wrap {
-      margin-right: 150px;
+      margin-left: 75px;
     }
+  }
+
+    .menu-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-wrap .menu-img {
+    width: 100%;
+    height: 200px; /* Adjust as necessary */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .menu-wrap .text {
+    text-align: center;
+  }
+
+  .menu-wrap .text h3,
+  .menu-wrap .text .price,
+  .menu-wrap .text form {
+    margin: 10px 0;
   }
 
     </style>
