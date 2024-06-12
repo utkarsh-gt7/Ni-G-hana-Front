@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/tastaana/Ni-G-hana-Front
+    - ./ index.js $DEPLOYPATH
